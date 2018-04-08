@@ -1,0 +1,60 @@
+buildscript {
+    ext.versions = [
+            'minSdk'          : 18,
+            'compileSdk'      : 27,
+            'junit'           : '4.12',
+            'supportLibrary'  : '27.0.2',
+            'androidPlugin'   : '3.1.0',
+            'kotlin'          : '1.2.21',
+            'constraintLayout': '1.0.2',
+            'testRunner'      : '1.0.1',
+            'espresso'        : '3.0.1',
+            'buildTools'      : '27.0.3',
+            'gson'            : '2.8.1',
+            'roboletric'      : '3.8'
+    ]
+
+    ext.deps = [
+            android  : [
+                    'gradlePlugin': "com.android.tools.build:gradle:${versions.androidPlugin}",
+            ],
+            'support': [
+                    'appcompat'       : "com.android.support:appcompat-v7:${versions.supportLibrary}",
+                    'compat'          : "com.android.support:support-compat:${versions.supportLibrary}",
+                    'annotations'     : "com.android.support:support-annotations:${versions.supportLibrary}",
+                    'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayout}",
+            ],
+            'test'   : [
+                    'junit'     : "junit:junit:${versions.junit}",
+                    'runner'    : "com.android.support.test:runner:${versions.testRunner}",
+                    'espresso'  : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
+                    'roboletric': "org.robolectric:robolectric:${versions.roboletric}"
+            ],
+            'kotlin' : [
+                    'stdLibJre8': "org.jetbrains.kotlin:kotlin-stdlib-jre8:${versions.kotlin}",
+                    'plugin'    : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+
+            ],
+            'gson'   : "com.google.code.gson:gson:${versions.gson}"
+    ]
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath deps.android.gradlePlugin
+        classpath deps.kotlin.plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
