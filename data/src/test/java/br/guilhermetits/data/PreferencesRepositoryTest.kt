@@ -8,9 +8,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
 
+@Config(manifest = Config.NONE)
 @RunWith(RobolectricTestRunner::class)
-class PreferencesRepositoryTest {
+open class PreferencesRepositoryTest {
     private lateinit var sut: PreferencesRepository
 
     @Before()
