@@ -3,6 +3,7 @@ package br.guilhermetits.data
 import android.content.Context
 import com.google.gson.GsonBuilder
 import junit.framework.Assert.assertEquals
+import junit.framework.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,8 +31,22 @@ open class PreferencesRepositoryTest {
 
         sut.putValue("pessoa", person)
         val recoveredPerson = sut.getValue<Person>("pessoa")
-
         assertEquals(person, recoveredPerson)
+    }
+
+    @Test
+    fun preferencesRepository_unexistentValue_returnnull() {
+        val recoveredPerson = sut.getValue<Person>("pessoanull")
+        assertNull(recoveredPerson)
+    }
+
+    @Test
+    fun preferencesRepository_unexistentValue_returndefaultValue() {
+        val defaultPerson = Person(22, "Mariazinha",
+                Address("Rua de ladrilhos de brilhantes", "Infancia", 777))
+
+        val recoveredPerson = sut.getValue("pessoadefault", defaultPerson)
+        assertEquals(defaultPerson, recoveredPerson)
     }
 
     data class Person(val age: Int, val name: String, val subclass: Address)
