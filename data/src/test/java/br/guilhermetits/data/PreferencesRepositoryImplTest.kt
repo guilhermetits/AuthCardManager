@@ -13,7 +13,7 @@ import org.robolectric.annotation.Config
 
 @Config(manifest = Config.NONE)
 @RunWith(RobolectricTestRunner::class)
-open class PreferencesRepositoryTest {
+open class PreferencesRepositoryImplTest {
     private lateinit var sut: PreferencesRepository
 
     @Before()
